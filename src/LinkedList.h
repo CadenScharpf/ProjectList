@@ -17,7 +17,6 @@ struct Project
     struct Project * next;
 };//end struct Project
 
-
 class LinkedList
 {
     private:

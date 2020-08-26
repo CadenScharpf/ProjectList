@@ -4,12 +4,19 @@
 // ASU Email Address: cscharpf@asu.edu
 #include "./LinkedList.h"
 
-//Constructor to initialize the linked list
+/**
+ * @brief Construct a new Linked List:: Linked List object
+ * 
+ */
 LinkedList::LinkedList()
 {
     head = NULL;
 }
 
+/**
+ * @brief Destroy the Linked List:: Linked List object
+ * 
+ */
 LinkedList::~LinkedList()
 {
     int x = 0;
@@ -17,6 +24,17 @@ LinkedList::~LinkedList()
     cout << "The number of deleted projects is: " << x << endl;
 }
 
+/**
+ * @brief Attempts to add a new project data into the linked list using the parameter values - project name, 
+ *        and the number of participants. If there is no memory left to create a new object or if a project 
+ *        with the same project name already exists in the linked list, the function will return 0. 
+ *        Otherwise returns 1.
+ * 
+ * @param newProjectName Name of the project to be added
+ * @param newNumberOfParticipants Number of participants
+ * @return true 
+ * @return false 
+ */
 bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
  {
     Project **current = &head;
@@ -52,6 +70,15 @@ bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
     return 1;
  }//end method addProject
 
+/**
+ * @brief Attempts to remove the project with the parameter project name value.
+ *        Returns true if it can find and remove the project information.
+ *        Otherwise returns false.
+ * 
+ * @param projectName Name of the project to be removed
+ * @return true 
+ * @return false 
+ */
 bool LinkedList::removeProject(string projectName)
  {
     Project **curr = &head;
@@ -69,7 +96,15 @@ bool LinkedList::removeProject(string projectName)
     return 0;
  }
  
-//Description: .... to be completed
+/**
+ * @brief Attempts to change the number of participants with the parameter project name value.
+ *        Return's true if it can find and update the project information, otherwise returns false.
+ * 
+ * @param projectName Name of the project to be added
+ * @param newNumberOfParticipants Number of participants
+ * @return true 
+ * @return false 
+ */
 bool LinkedList::changeParticipantNumber(string projectName, int newNumberOfParticipants)
 {
     Project **curr = &head;
@@ -85,7 +120,10 @@ bool LinkedList::changeParticipantNumber(string projectName, int newNumberOfPart
     return 0;
 }
 
-//Description: .... to be completed
+/**
+ * @brief Prints all entries in the linked list in the following format:
+ *       ' Project Name: projectName, Number of Participants: numberOfParticipants '
+ */
 void LinkedList::printList()
 {
     if(head == NULL) {
@@ -100,8 +138,14 @@ void LinkedList::printList()
     }
 }//end method printList
 
-
-//Description: 
+/**
+ * @brief Accumulator subroutine for the destructor.Recursively 
+ *        navigates to the end of the list and Deletes each
+ *        project as it propigates back down the stack
+ * 
+ * @param head pointer to the head
+ * @param count initialize to 0
+ */
 void LinkedList::garbageAccumulator(Project **head, int *count)
 {   
     if(*head == NULL) {return;} 
