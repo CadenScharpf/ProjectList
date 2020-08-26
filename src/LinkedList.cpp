@@ -25,8 +25,8 @@ bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
         }
         current = & (*current)->next;
     }
-    
-    if(!isEmpty)
+
+    if(head != NULL)
     {
         if((*current)->projectName == newProjectName) // Check for project w/ same name
         {
