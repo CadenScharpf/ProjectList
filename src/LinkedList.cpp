@@ -17,18 +17,22 @@ LinkedList::~LinkedList()
 bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
  {
     Project **current = &head;
-    for(;*current; current = & (*current)->next)// Find pos. in list
+    while((*current) != NULL)// Find pos. in list
     {
         if(newProjectName.compare((*current)->projectName) <= 0)
         {
             break;
         }
+        current = & (*current)->next;
     }
-
-    if((*current)->projectName == newProjectName) // Check for project w/ same name
+    
+    if(!isEmpty)
     {
-        projectExistsErrMsg(newProjectName);
-        return 0;
+        if((*current)->projectName == newProjectName) // Check for project w/ same name
+        {
+            projectExistsErrMsg(newProjectName);
+            return 0;
+        }
     }
 
     Project * newProject = new (nothrow) Project;
@@ -73,6 +77,15 @@ void LinkedList::printList()
     }
     cout << "Done." << endl;
 }//end method printList
+
+bool LinkedList::isEmpty()
+{
+    if(head == NULL)
+    {
+        return true;
+    }
+    return false;
+}
 
 // Helpers
 /**
