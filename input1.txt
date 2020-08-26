@@ -1,0 +1,44 @@
+D
+R
+Walking Project
+M
+Running Project
+4
+A
+Grand Road Improvement Project
+9
+D
+A
+Helping Children Project
+11
+D
+A
+Farming Project
+7
+D
+M
+Bridge Improvement Project
+5
+D
+M
+Grand Road Improvement Project
+25
+D
+R
+Running Project
+D
+R
+Farming Project
+D
+A
+Mountain Project
+103
+D
+R
+Grand Road Improvement Project
+D
+R
+Mountain Project
+D
+Q
+
