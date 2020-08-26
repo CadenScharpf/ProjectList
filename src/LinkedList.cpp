@@ -1,3 +1,7 @@
+// Assignment #1
+// File: LinkedList.cpp
+// Name: Caden Scharpf
+// ASU Email Address: cscharpf@asu.edu
 #include "./LinkedList.h"
 
 //Constructor to initialize the linked list
@@ -6,14 +10,13 @@ LinkedList::LinkedList()
     head = NULL;
 }
 
-//Destructor
-//Description: ...... to be completed
 LinkedList::~LinkedList()
 {
-    garbageAccumulator(&head);
+    int x = 0;
+    garbageAccumulator(&head, &x);
+    cout << "The number of deleted projects is: " << x << endl;
 }
 
-//Description: .... to be completed
 bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
  {
     Project **current = &head;
@@ -49,7 +52,6 @@ bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
     return 1;
  }//end method addProject
 
-//Description: .... to be completed
 bool LinkedList::removeProject(string projectName)
  {
     Project **curr = &head;
@@ -87,7 +89,7 @@ bool LinkedList::changeParticipantNumber(string projectName, int newNumberOfPart
 void LinkedList::printList()
 {
     if(head == NULL) {
-        cout << "The list is empty\n" << endl;
+        cout << "The list is empty" << endl;
         return;
     }
     Project **current = &head;
@@ -96,14 +98,14 @@ void LinkedList::printList()
         cout << "Project Name: " << (*current)->projectName << ", ";
         cout << "Number of Participants: " << (*current)->numberOfParticipants << endl;
     }
-    cout << "Done." << endl << endl;
 }//end method printList
 
 
 //Description: 
-void LinkedList::garbageAccumulator(Project **head)
-{
+void LinkedList::garbageAccumulator(Project **head, int *count)
+{   
     if(*head == NULL) {return;} 
-    garbageAccumulator(&(*head)->next);
+    garbageAccumulator(&(*head)->next, count);
     delete(*head);
+    *count = (*count)+1;
 }

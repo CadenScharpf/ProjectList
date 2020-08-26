@@ -2,7 +2,6 @@
 // File: LinkedList.h
 // Name: Caden Scharpf
 // ASU Email Address: cscharpf@asu.edu
-// Description: To be completed
 
 #include <iostream> //to use cout
 #include <iomanip> //to format output
@@ -25,7 +24,7 @@ class LinkedList
         struct Project * head;
 
         bool isEmpty();
-        void garbageAccumulator(Project **head);
+        void garbageAccumulator(Project **head, int *count);
 
     public:
         LinkedList();
