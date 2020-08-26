@@ -10,14 +10,14 @@ LinkedList::LinkedList()
 //Description: ...... to be completed
 LinkedList::~LinkedList()
 {
-    //To be completed
+    garbageAccumulator(&head);
 }
 
 //Description: .... to be completed
 bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
  {
     Project **current = &head;
-    while((*current) != NULL)// Find pos. in list
+    while((*current))// Find pos. in list
     {
         if(newProjectName.compare((*current)->projectName) <= 0)
         {
@@ -26,11 +26,10 @@ bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
         current = & (*current)->next;
     }
 
-    if(head != NULL)
+    if((*current) != NULL)
     {
         if((*current)->projectName == newProjectName) // Check for project w/ same name
         {
-            projectExistsErrMsg(newProjectName);
             return 0;
         }
     }
@@ -38,7 +37,6 @@ bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
     Project * newProject = new (nothrow) Project;
     if(newProject == 0) //check for memory err
     {
-        memoryErrMsg();
         return 0;
     }
     
@@ -47,60 +45,65 @@ bool LinkedList::addProject(string newProjectName, int newNumberOfParticipants)
     newProject->next = *current;
     *current = newProject;
 
-    projectAddedMsg(newProjectName);
+    //projectAddedMsg(newProjectName);
     return 1;
  }//end method addProject
 
 //Description: .... to be completed
 bool LinkedList::removeProject(string projectName)
  {
-    //To be completed
-    return 1;
+    Project **curr = &head;
+    while((*curr))
+    {
+        if((*curr)->projectName == projectName)
+        {
+            Project * unlinked = (*curr);
+            *curr = (*curr)->next;
+            delete(unlinked);
+            return 1;
+        }
+        curr = & (*curr)->next;
+    }
+    return 0;
  }
  
 //Description: .... to be completed
 bool LinkedList::changeParticipantNumber(string projectName, int newNumberOfParticipants)
 {
-    //To be completed
-    return 1;
+    Project **curr = &head;
+    while((*curr))
+    {
+        if((*curr)->projectName == projectName)
+        {
+            (*curr)->numberOfParticipants = newNumberOfParticipants;
+            return 1;
+        }
+        curr = & (*curr)->next;
+    }
+    return 0;
 }
 
 //Description: .... to be completed
 void LinkedList::printList()
 {
-    cout << "Listing projects in alphabetical order..." << endl << endl;
+    if(head == NULL) {
+        cout << "The list is empty\n" << endl;
+        return;
+    }
     Project **current = &head;
     for(; *current; current = & (*current)->next)
     {
-        cout << "Project Name: " << (*current)->projectName << endl;
-        cout << "Number of Participants " << (*current)->numberOfParticipants << endl << endl;
+        cout << "Project Name: " << (*current)->projectName << ", ";
+        cout << "Number of Participants: " << (*current)->numberOfParticipants << endl;
     }
-    cout << "Done." << endl;
+    cout << "Done." << endl << endl;
 }//end method printList
 
-bool LinkedList::isEmpty()
-{
-    if(head == NULL)
-    {
-        return true;
-    }
-    return false;
-}
 
-// Helpers
-/**
- * @brief Print
- * 
- */
-void memoryErrMsg()
+//Description: 
+void LinkedList::garbageAccumulator(Project **head)
 {
-    cout << "Error assigning memory. Cancelling request to add project..." << endl;
-}
-void projectExistsErrMsg(string projectName)
-{
-    cout << "A project with the name " << projectName << " already exists in the database." << endl;
-    cout << "Cancelling request to add project..." << endl;
-}
-void projectAddedMsg(string projectName){
-    cout << projectName << " was added to the database successfully" << endl;
+    if(*head == NULL) {return;} 
+    garbageAccumulator(&(*head)->next);
+    delete(*head);
 }

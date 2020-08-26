@@ -24,9 +24,9 @@ class LinkedList
     private:
         struct Project * head;
 
-        //Helpers
         bool isEmpty();
-    
+        void garbageAccumulator(Project **head);
+
     public:
         LinkedList();
         ~LinkedList();
@@ -37,8 +37,3 @@ class LinkedList
 
     void printList();
 };//end class LinkedList
-
-//Helpers
-void memoryErrMsg();
-void projectExistsErrMsg(string projectName);
-void projectAddedMsg(string projectName);
