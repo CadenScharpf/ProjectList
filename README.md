@@ -21,12 +21,12 @@ Simply run the executable to enter the shell
 ```
 The program will prompt the user for the following actions until 'Q' is input, at which point it will exit. 
 
-A               Add Project\n
-D               Display Projects\n
-M               Change Participant Count\n
-Q               Quit\n
-R               Remove Project\n
-?               Display Help\n
+A - Add Project
+D - Display Projects
+M - Change Participant Count
+Q - Quit
+R - Remove Project
+? - Display Help
 
 ### Text Input
 To test the program against the provided SampleInput.txt file
