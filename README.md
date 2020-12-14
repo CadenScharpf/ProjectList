@@ -21,8 +21,6 @@ Simply run the executable to enter the shell
 ```
 The program will prompt the user for the following actions until 'Q' is input, at which point it will exit. 
 
-Choice          Action
-------          ------
 A               Add Project
 D               Display Projects
 M               Change Participant Count
